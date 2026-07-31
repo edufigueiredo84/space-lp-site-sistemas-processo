@@ -31,9 +31,12 @@ function Icon({ name, size = 20 }) {
 }
 
 const navItems = [
-  ['intro', 'O que é'], ['usos', 'Como usamos'], ['briefing', 'Briefing'],
-  ['formulario', 'Formulário'], ['whatsapp', 'WhatsApp'], ['integracoes', 'Integrações'],
-  ['analytics-lp', 'Analytics'], ['dominio', 'Domínio'], ['estimativa', 'Estimativa'], ['dependencias', 'Dependências']
+  ['intro', 'O que é'],
+  ['usos', 'Aplicações'],
+  ['briefing', 'Briefing'],
+  ['dominio', 'Publicação'],
+  ['estimativa', 'Planejamento'],
+  ['dependencias', 'Riscos'],
 ];
 
 const requirements = [

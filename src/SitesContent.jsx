@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 const nav = [
-  ['site-intro', 'O que é'], ['site-usos', 'Como usamos'], ['site-comparacao', 'Site x Landing Page'],
-  ['site-briefing', 'Briefing'], ['site-arquitetura', 'Arquitetura'], ['site-conteudo', 'Conteúdo'],
-  ['site-design', 'Design'], ['site-formularios', 'Formulários'], ['site-whatsapp', 'WhatsApp'],
-  ['site-integracoes', 'Integrações'], ['site-seo', 'SEO'], ['site-dominio', 'Domínio'],
-  ['site-estimativa', 'Estimativa'], ['site-dependencias', 'Dependências'],
-  ['site-responsabilidades', 'Responsabilidades'], ['site-processo', 'Processo'], ['site-validacao', 'Validação'],
+  ['site-intro', 'O que é'],
+  ['site-usos', 'Aplicações'],
+  ['site-comparacao', 'Comparativo'],
+  ['site-briefing', 'Briefing'],
+  ['site-dominio', 'Publicação'],
+  ['site-estimativa', 'Planejamento'],
+  ['site-dependencias', 'Riscos'],
+  ['site-responsabilidades', 'Responsabilidades'],
+  ['site-processo', 'Processo'],
+  ['site-validacao', 'Validação'],
 ];
 
 const uses = ['Presença digital da empresa', 'Apresentação institucional', 'Divulgação de serviços', 'Fortalecimento da marca', 'Construção de autoridade', 'Apresentação de portfólio', 'Captação de contatos', 'Direcionamento para WhatsApp', 'Suporte a campanhas de Google e Meta', 'Geração de tráfego orgânico', 'Centralização de informações oficiais'];
@@ -94,13 +98,13 @@ function SitesContent() {
 
       <section id="site-estimativa" className="site-section"><Title kicker="06 — Planejamento" title="Estimativa inicial de execução" description="Os prazos representam etapas diferentes e dependem de materiais, acessos e aprovações."/><div className="site-estimate-grid">{estimates.map(([name,time,text],i)=><article key={name} className={i===0?'featured':''}><small>{name}</small><strong>{time}</strong><p>{text}</p></article>)}</div><div className="site-formula"><span>Briefing aprovado</span><b>+</b><span>Design a definir</span><b>+</b><span>3–5 dias</span><b>+</b><span>Integração 3h+</span><b>+</b><span>Domínio 2h+</span></div><p className="site-estimate-note">O cronograma final depende do conteúdo, Design, acessos, integrações, aprovação e quantidade de páginas.</p></section>
 
-      <section id="site-dependencias" className="site-section"><Title kicker="06 — Riscos" title="O que pode impactar o prazo"/><div className="site-delay-grid">{Object.entries(delays).map(([group,items],i)=><article key={group}><span>0{i+1}</span><h3>{group}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div></section>
+      <section id="site-dependencias" className="site-section"><Title kicker="07 — Riscos" title="O que pode impactar o prazo"/><div className="site-delay-grid">{Object.entries(delays).map(([group,items],i)=><article key={group}><span>0{i+1}</span><h3>{group}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div></section>
 
-      <section id="site-responsabilidades" className="site-section"><Title kicker="07 — Equipe" title="Responsabilidades por departamento"/><div className="site-department-grid">{Object.entries(departments).map(([group,items])=><article key={group}><h3>{group}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div><p className="site-inline-note">Cada projeto pode ter responsáveis diferentes, mas as responsabilidades precisam estar definidas antes do início.</p></section>
+      <section id="site-responsabilidades" className="site-section"><Title kicker="08 — Equipe" title="Responsabilidades por departamento"/><div className="site-department-grid">{Object.entries(departments).map(([group,items])=><article key={group}><h3>{group}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div><p className="site-inline-note">Cada projeto pode ter responsáveis diferentes, mas as responsabilidades precisam estar definidas antes do início.</p></section>
 
-      <section id="site-processo" className="site-section"><Title kicker="08 — Fluxo" title="Processo resumido" description="Estrutura informativa preparada para receber status de acompanhamento no futuro."/><ol className="site-timeline">{process.map((x,i)=><li key={x}><span>{String(i+1).padStart(2,'0')}</span><strong>{x}</strong></li>)}</ol></section>
+      <section id="site-processo" className="site-section"><Title kicker="09 — Fluxo" title="Processo resumido" description="Estrutura informativa preparada para receber status de acompanhamento no futuro."/><ol className="site-timeline">{process.map((x,i)=><li key={x}><span>{String(i+1).padStart(2,'0')}</span><strong>{x}</strong></li>)}</ol></section>
 
-      <section id="site-validacao" className="site-section"><Title kicker="09 — Qualidade" title="Checklist técnico antes da apresentação"/><div className="site-validation">{validation.map(x=><label key={x}><input type="checkbox"/><span>✓</span>{x}</label>)}</div></section>
+      <section id="site-validacao" className="site-section"><Title kicker="10 — Qualidade" title="Checklist técnico antes da apresentação"/><div className="site-validation">{validation.map(x=><label key={x}><input type="checkbox"/><span>✓</span>{x}</label>)}</div></section>
 
       <section className="site-rule"><span>YK</span><div><small>Regra principal</small><h2>O desenvolvimento deve começar quando houver informações suficientes para construir a estrutura aprovada sem depender de decisões básicas.</h2><p>Um site possui várias páginas conectadas. Uma decisão incompleta pode gerar retrabalho em toda a estrutura.</p><strong>Quanto mais completo o briefing, mais previsível será o prazo de implementação.</strong></div></section>
     </div>
