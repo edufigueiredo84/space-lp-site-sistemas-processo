@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 import SitesContent from './SitesContent';
+import SystemsContent from './SystemsContent';
 
 const YELLOW = '#f6d641';
 
@@ -93,9 +94,9 @@ function App() {
         </div>
       </section>
 
-      <nav className="tabs" aria-label="Tipos de projeto">{['Landing Pages', 'Sites', 'Sistemas'].map(item => <button key={item} onClick={() => setTab(item)} className={tab === item ? 'active' : ''}>{item}<span>{item === 'Sistemas' ? 'Em breve' : 'Disponível'}</span></button>)}</nav>
+      <nav className="tabs" aria-label="Tipos de projeto">{['Landing Pages', 'Sites', 'Sistemas'].map(item => <button key={item} onClick={() => setTab(item)} className={tab === item ? 'active' : ''}>{item}<span>Disponível</span></button>)}</nav>
 
-      {tab === 'Sites' ? <SitesContent /> : tab === 'Sistemas' ? <section className="coming-soon"><span className="icon-box large"><Icon name="layers" size={30}/></span><small>{tab}</small><h2>Conteúdo do processo<br/>em construção.</h2><p>A estrutura já está pronta para receber esta documentação.</p></section> : <div className="content-layout">
+      {tab === 'Sites' ? <SitesContent /> : tab === 'Sistemas' ? <SystemsContent /> : <div className="content-layout">
         <aside className={`sidebar ${menuOpen ? 'open' : ''}`}><div className="sidebar-title"><span>Nesta página</span><button onClick={() => setMenuOpen(false)} aria-label="Fechar menu"><Icon name="x"/></button></div><nav>{navItems.map(([id,label], index) => <button key={id} className={active === id ? 'active' : ''} onClick={() => goTo(id)}><span>{String(index+1).padStart(2,'0')}</span>{label}</button>)}</nav></aside>
         <button className="mobile-index" onClick={() => setMenuOpen(true)}><Icon name="menu"/> Navegar pelas seções</button>
         <div className="content">
