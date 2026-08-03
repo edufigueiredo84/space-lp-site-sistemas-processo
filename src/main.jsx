@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 import SitesContent from './SitesContent';
@@ -75,6 +75,25 @@ function App() {
   const [tab, setTab] = useState('Landing Pages');
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState('intro');
+  const tabStartRef = useRef(null);
+
+  useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+
+    const resetScroll = () => window.scrollTo({
+      top: tabStartRef.current?.offsetTop ?? 0,
+      behavior: 'auto',
+    });
+
+    resetScroll();
+    window.addEventListener('pageshow', resetScroll);
+
+    return () => {
+      window.removeEventListener('pageshow', resetScroll);
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && setActive(e.target.id)), { rootMargin: '-25% 0px -65%' });
@@ -83,6 +102,11 @@ function App() {
   }, [tab]);
 
   const goTo = id => { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); setMenuOpen(false); };
+  const changeTab = nextTab => {
+    setTab(nextTab);
+    setMenuOpen(false);
+    window.scrollTo({ top: tabStartRef.current?.offsetTop ?? 0, behavior: 'smooth' });
+  };
 
   return <div className="app-shell">
     <header className="topbar"><a className="brand" href="#top" aria-label="Yellow Kite"><img src="/assets/logo-standart-white.svg" alt="Yellow Kite" /></a><div className="top-meta"><span className="status-dot"/>Central interna <span className="divider"/> v1.0</div></header>
@@ -94,7 +118,8 @@ function App() {
         </div>
       </section>
 
-      <nav className="tabs" aria-label="Tipos de projeto">{['Landing Pages', 'Sites', 'Sistemas'].map(item => <button key={item} onClick={() => setTab(item)} className={tab === item ? 'active' : ''}>{item}<span>Disponível</span></button>)}</nav>
+      <div ref={tabStartRef} aria-hidden="true" />
+      <nav className="tabs" aria-label="Tipos de projeto">{['Landing Pages', 'Sites', 'Sistemas'].map(item => <button key={item} onClick={() => changeTab(item)} className={tab === item ? 'active' : ''}>{item}<span>Disponível</span></button>)}</nav>
 
       {tab === 'Sites' ? <SitesContent /> : tab === 'Sistemas' ? <SystemsContent /> : <div className="content-layout">
         <aside className={`sidebar ${menuOpen ? 'open' : ''}`}><div className="sidebar-title"><span>Nesta página</span><button onClick={() => setMenuOpen(false)} aria-label="Fechar menu"><Icon name="x"/></button></div><nav>{navItems.map(([id,label], index) => <button key={id} className={active === id ? 'active' : ''} onClick={() => goTo(id)}><span>{String(index+1).padStart(2,'0')}</span>{label}</button>)}</nav></aside>
