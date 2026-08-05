@@ -34,15 +34,15 @@ const briefing = [
 
 const decisions = ['Objetivo e público principal','Arquitetura, páginas e menu','Textos aprovados','Identidade visual disponível','Imagens e vídeos','Necessidades do Design','Formulários e campos','WhatsApp validado','Integração e CRM','Admin / CMS ou site estático','Conteúdos editáveis pelo cliente','Analytics e eventos','Domínio e publicação','Acessos necessários','Responsável pela aprovação','Validação dos formulários'];
 const estimates = [
-  ['Implementação front-end','3 a 5 dias','Arquitetura aprovada, textos finalizados, identidade e materiais disponíveis. Não inclui rodadas de ajustes após a apresentação.'],
-  ['Design e produção','Prazo a definir','Estimado separadamente pelo departamento responsável conforme quantidade e complexidade das peças.'],
-  ['Integração','Mínimo de 3 horas','Configuração, campos, tratamento de erros, testes de envio, recebimento e validação.'],
-  ['Domínio ou subdomínio','Mínimo de 2 horas','Quando todos os acessos estão disponíveis e a configuração depende da Yellow Kite.'],
-  ['Ajustes','Fora da estimativa inicial','Avaliados por quantidade, impacto, conteúdo, estrutura, materiais e novas funcionalidades.'],
+  ['Prazo total','A partir de 10 dias úteis','Contempla as etapas aplicáveis, testes, validação técnica e margem operacional para conclusão.'],
+  ['Implementação','5 a 7 dias úteis','Construção das páginas, aplicação do conteúdo aprovado, responsividade e testes internos.'],
+  ['Integração','1 dia útil','Configuração e validação de CRM, formulário externo, webhook ou plataforma de atendimento, quando aplicável.'],
+  ['Domínio ou subdomínio','1 dia útil','Configuração, validação e publicação quando os acessos e registros necessários estiverem disponíveis.'],
+  ['Ajustes','Não incluídos','Avaliados por quantidade, impacto, conteúdo, estrutura, materiais e novas funcionalidades.'],
 ];
 const delays = {
-  Conteúdo:['Textos não aprovados','Conteúdo desorganizado','Novas páginas após o início'],
-  Design:['Identidade incompleta','Atraso nas peças','Imagens sem qualidade'],
+  Conteúdo:['Textos não aprovados ou alterados após a criação','Conteúdo desorganizado','Novas páginas após o início'],
+  Design:['Imagens finais ainda não entregues','Arte solicitada durante a criação','Dependência da Direção de Criação'],
   Estrutura:['Menu indefinido','Arquitetura não aprovada','CMS solicitado depois'],
   Integração:['Falta de acesso','Documentação incompleta','Campos indefinidos'],
   Publicação:['Falta de acesso ao domínio','Migração e terceiros','DNS ou SSL'],
@@ -88,7 +88,7 @@ function SitesContent() {
 
       <section id="site-comparacao" className="site-section"><Title kicker="03 — Comparativo" title="Site x Landing Page"/><div className="site-comparison"><article><small>Landing Page</small><h3>Uma jornada.<br/>Uma ação principal.</h3><ul>{['Página única','Foco em conversão','Uso frequente em campanhas','Conteúdo direcionado','Menor tempo de implementação'].map(x=><li key={x}>{x}</li>)}</ul></article><article><small>Site institucional</small><h3>Uma estrutura.<br/>Vários caminhos.</h3><ul>{['Múltiplas páginas','Apresentação ampla da empresa','Menu e navegação','Mais conteúdo e departamentos','SEO, performance e arquitetura'].map(x=><li key={x}>{x}</li>)}</ul></article></div><p className="site-conclusion">Landing Page é uma experiência focada em uma ação. <strong>Site é uma estrutura digital completa para representar a empresa.</strong></p></section>
 
-      <section className="site-alert"><span>!</span><div><small>Orientação operacional</small><h2>Antes de iniciar um site</h2><p>Mais páginas significam mais conteúdo, decisões e materiais. Iniciar sem arquitetura, identidade ou responsáveis pode gerar retrabalho em toda a estrutura.</p></div><strong>Briefing incompleto<br/><em>significa prazo indefinido.</em></strong></section>
+      <section className="site-alert"><span>!</span><div><small>Orientação operacional</small><h2>Antes de iniciar um site</h2><p>O briefing deve estar o mais próximo possível da versão final. Alterar textos, substituir imagens provisórias ou solicitar novas artes à Direção de Criação durante a execução gera retrabalho em várias páginas e pode ampliar o prazo.</p></div><strong>Briefing mais final<br/><em>significa entrega mais rápida.</em></strong></section>
 
       <section id="site-briefing" className="site-section"><Title kicker="04 — Checklist" title="O que o briefing precisa ter" description="Abra cada categoria para consultar requisitos, bloqueios e definições necessárias."/><div className="site-briefing-list">{briefing.map((item,i)=><details id={item.id} key={item.group} className="site-requirement"><summary><span>{String(i+1).padStart(2,'0')}</span><div><small>{item.group}</small><h3>{item.title}</h3></div><b>{item.status}</b><i>+</i></summary><div className="site-requirement-body"><p>{item.text}</p>{item.items&&<ul>{item.items.map(x=><li key={x}>{x}</li>)}</ul>}{item.note&&<aside>{item.note}</aside>}</div></details>)}</div></section>
 
@@ -96,9 +96,9 @@ function SitesContent() {
 
       <section id="site-dominio" className="site-section"><Title kicker="05 — Publicação" title="Onde o site será publicado?"/><div className="site-domain-grid"><article className="featured"><small>Opção mais comum</small><h3>Domínio principal<br/>do cliente</h3><code>empresa.com.br</code><p>Pode envolver provedor, DNS, hospedagem, SSL, migração do site anterior e redirecionamentos.</p></article><article><small>Estrutura separada</small><h3>Subdomínio<br/>do cliente</h3><code>institucional.empresa.com.br</code><p>Usado quando o projeto precisa permanecer separado de outra estrutura já existente.</p></article><article><small>Homologação</small><h3>Endereço<br/>Yellow Kite</h3><code>empresa.yellowkite.digital</code><p>Ambiente temporário, demonstração, homologação ou publicação administrada pela Yellow Kite.</p></article></div><p className="site-inline-note">Quando a configuração depende do cliente ou de terceiros, o prazo de publicação pode variar.</p></section>
 
-      <section id="site-estimativa" className="site-section"><Title kicker="06 — Planejamento" title="Estimativa inicial de execução" description="Os prazos representam etapas diferentes e dependem de materiais, acessos e aprovações."/><div className="site-estimate-grid">{estimates.map(([name,time,text],i)=><article key={name} className={i===0?'featured':''}><small>{name}</small><strong>{time}</strong><p>{text}</p></article>)}</div><div className="site-formula"><span>Briefing aprovado</span><b>+</b><span>Design a definir</span><b>+</b><span>3–5 dias</span><b>+</b><span>Integração 3h+</span><b>+</b><span>Domínio 2h+</span></div><p className="site-estimate-note">O cronograma final depende do conteúdo, Design, acessos, integrações, aprovação e quantidade de páginas.</p></section>
+      <section id="site-estimativa" className="site-section"><Title kicker="06 — Planejamento" title="Prazo inicial de execução" description="Referência considerando briefing final, arquitetura aprovada, textos e imagens aprovados, artes de DA concluídas quando necessárias e todos os acessos disponíveis."/><div className="site-estimate-grid">{estimates.map(([name,time,text],i)=><article key={name} className={i===0?'featured':''}><small>{name}</small><strong>{time}</strong><p>{text}</p></article>)}</div><div className="site-formula"><span>Implementação, integração e domínio já estão incluídos no prazo mínimo de 10 dias úteis.</span></div><p className="site-estimate-note">A referência não inclui rodadas de ajustes e começa somente após a validação do briefing final, da arquitetura, dos textos, das imagens, das artes de Direção de Arte quando necessárias e dos acessos. Alterações ou materiais enviados após o início exigem reavaliação do cronograma. Esperas por clientes, fornecedores, suporte técnico, aprovações, migração ou propagação de DNS também podem alterar a data de publicação.</p></section>
 
-      <section id="site-dependencias" className="site-section"><Title kicker="07 — Riscos" title="O que pode impactar o prazo"/><div className="site-delay-grid">{Object.entries(delays).map(([group,items],i)=><article key={group}><span>0{i+1}</span><h3>{group}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div></section>
+      <section id="site-dependencias" className="site-section"><Title kicker="07 — Riscos" title="O que pode impactar o prazo"/><div className="site-delay-grid" style={{'--card-basis':`${100 / Math.ceil(Object.keys(delays).length / 2)}%`}}>{Object.entries(delays).map(([group,items],i)=><article key={group}><span>0{i+1}</span><h3>{group}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div></section>
 
       <section id="site-responsabilidades" className="site-section"><Title kicker="08 — Equipe" title="Responsabilidades por departamento"/><div className="site-department-grid">{Object.entries(departments).map(([group,items])=><article key={group}><h3>{group}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div><p className="site-inline-note">Cada projeto pode ter responsáveis diferentes, mas as responsabilidades precisam estar definidas antes do início.</p></section>
 
@@ -106,7 +106,7 @@ function SitesContent() {
 
       <section id="site-validacao" className="site-section"><Title kicker="10 — Qualidade" title="Checklist técnico antes da apresentação"/><div className="site-validation">{validation.map(x=><label key={x}><input type="checkbox"/><span>✓</span>{x}</label>)}</div></section>
 
-      <section className="site-rule"><span>YK</span><div><small>Regra principal</small><h2>O desenvolvimento deve começar quando houver informações suficientes para construir a estrutura aprovada sem depender de decisões básicas.</h2><p>Um site possui várias páginas conectadas. Uma decisão incompleta pode gerar retrabalho em toda a estrutura.</p><strong>Quanto mais completo o briefing, mais previsível será o prazo de implementação.</strong></div></section>
+      <section className="site-rule"><span>YK</span><div><small>Regra principal</small><h2>O desenvolvimento deve começar quando houver informações suficientes para construir a estrutura aprovada sem depender de decisões básicas.</h2><p>Um site possui várias páginas conectadas. Mudanças em textos, imagens ou peças visuais após o início podem gerar retrabalho em toda a estrutura e exigem reavaliação do cronograma.</p><strong>Quanto mais final estiver o briefing, mais rápida e previsível será a entrega.</strong></div></section>
     </div>
   </div>;
 }
