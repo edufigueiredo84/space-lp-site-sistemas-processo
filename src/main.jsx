@@ -86,7 +86,7 @@ function App() {
     window.history.scrollRestoration = 'manual';
 
     const resetScroll = () => window.scrollTo({
-      top: tabStartRef.current?.offsetTop ?? 0,
+      top: 0,
       behavior: 'auto',
     });
 
