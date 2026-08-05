@@ -97,7 +97,35 @@ function LovableContent() {
 
       <section id="lovable-prompt" className="lovable-section lovable-prompt-section">
         <div className="lovable-title"><span>04 — Como pedir</span><h2>Um bom prompt funciona como um mini briefing</h2><p>Seja específico sobre o que deve ser construído agora. Evite acumular pedidos desconectados ou contraditórios na mesma solicitação.</p></div>
+        <div className="lovable-ai-prep">
+          <div><span>Etapa recomendada</span><h3>Estruture o prompt com o apoio de outra IA</h3><p>Antes de levar a solicitação ao Lovable, use uma ferramenta como ChatGPT, Claude ou Gemini para organizar as informações. Combine o briefing recebido do cliente com as decisões tomadas por você ou pela equipe e peça que a IA transforme tudo em um documento claro, completo e sem contradições.</p></div>
+          <div className="lovable-ai-flow"><span>Briefing do cliente</span><b>+</b><span>Decisões da equipe</span><b>→</b><span>Prompt estruturado em .md</span><b>→</b><span>Lovable</span></div>
+          <aside><strong>Por que usar Markdown?</strong><p>Títulos, listas e hierarquia ajudam a separar contexto, escopo, conteúdo, regras e critérios de validação. Isso facilita a interpretação e tende a gerar uma primeira resposta mais consistente.</p></aside>
+        </div>
         <div className="lovable-prompt-card"><div className="lovable-prompt-label">Estrutura sugerida</div>{promptParts.map(([label, text]) => <p key={label}><strong>{label}:</strong> {text}</p>)}</div>
+        <div className="lovable-md-example">
+          <div><span>Modelo em Markdown</span><h3>Organize antes de enviar</h3><p>Salve como arquivo <code>.md</code> ou cole o conteúdo já estruturado no Lovable.</p></div>
+          <pre><code>{`# Nome do projeto
+
+## Contexto e objetivo
+- Contexto: [resumo do briefing]
+- Objetivo principal: [resultado esperado]
+
+## Público
+- [quem vai utilizar]
+
+## Escopo da primeira versão
+- [página ou funcionalidade]
+
+## Conteúdo e referências
+- [textos, materiais e links]
+
+## Regras e restrições
+- [decisões do responsável ou da equipe]
+
+## Critérios de validação
+- [o que precisa funcionar ou ser aprovado]`}</code></pre>
+        </div>
         <div className="lovable-prompt-tips"><span>Faça</span><p>Explique a intenção, defina prioridade e peça uma etapa por vez.</p><span>Evite</span><p>“Deixe melhor”, “mude tudo” ou novas direções sem explicar o problema.</p></div>
       </section>
 
