@@ -31,6 +31,7 @@ button { color:inherit; }
 .tabs button:after { content:''; position:absolute; bottom:-1px; left:0; height:2px; width:0; background:var(--yellow); transition:.3s; }
 .tabs button.active { color:var(--yellow); background:#141411; }
 .tabs button.active:after { width:100%; }
+.tabs button:disabled { cursor:not-allowed; opacity:.45; }
 .tabs button .tab-label{display:inline;color:#f4f4f2;font:inherit;text-transform:none;letter-spacing:normal;margin:0}.tabs button.lovable-tab{padding-right:76px}.tabs button.lovable-tab>img{position:absolute;right:24px;top:50%;width:40px;height:40px;object-fit:contain;transform:translateY(-50%)}
 .content-layout { width:min(100%,1440px); margin-inline:auto; display:grid; grid-template-columns:225px minmax(0,1fr); align-items:start; }
 .sidebar { position:sticky; top:96px; height:calc(100vh - 96px); align-self:start; overflow-y:auto; padding:52px 26px; border-right:1px solid var(--line); background:#090909; z-index:10; }

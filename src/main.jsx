@@ -123,7 +123,13 @@ function App() {
       </section>
 
       <div ref={tabStartRef} aria-hidden="true" />
-      <nav className="tabs" aria-label="Tipos de projeto">{['Landing Pages', 'Sites', 'Sistemas', 'Lovable'].map(item => <button key={item} onClick={() => changeTab(item)} className={`${tab === item ? 'active' : ''} ${item === 'Lovable' ? 'lovable-tab' : ''}`}>{item === 'Lovable' && <img src="/assets/lovable-mark.png" alt=""/>}<span className="tab-label">{item}</span><span>Disponível</span></button>)}</nav>
+      <nav className="tabs" aria-label="Tipos de projeto">{[
+        { label: 'Landing Pages' },
+        { label: 'Sites' },
+        { label: 'Lovable' },
+        { label: 'Dashboard', comingSoon: true },
+        { label: 'Sistemas' },
+      ].map(item => <button key={item.label} disabled={item.comingSoon} onClick={() => changeTab(item.label)} className={`${tab === item.label ? 'active' : ''} ${item.label === 'Lovable' ? 'lovable-tab' : ''}`}>{item.label === 'Lovable' && <img src="/assets/lovable-mark.png" alt=""/>}<span className="tab-label">{item.label}</span><span>{item.comingSoon ? 'Em breve' : 'Disponível'}</span></button>)}</nav>
 
       {tab === 'Sites' ? <SitesContent /> : tab === 'Sistemas' ? <SystemsContent /> : tab === 'Lovable' ? <LovableContent /> : <div className="content-layout">
         <aside className={`sidebar ${menuOpen ? 'open' : ''}`}><div className="sidebar-title"><span>Nesta página</span><button onClick={() => setMenuOpen(false)} aria-label="Fechar menu"><Icon name="x"/></button></div><nav>{navItems.map(([id,label], index) => <button key={id} className={active === id ? 'active' : ''} onClick={() => goTo(id)}><span>{String(index+1).padStart(2,'0')}</span>{label}</button>)}</nav></aside>
